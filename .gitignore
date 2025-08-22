@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.env*
+.DS_Store
+*.log
+tripweaver/
+*.zip
+apps/web/public/*.zip
+apps/web/public/export/*.zip
+*.zip
+*.zip
+apps/web/public/*.zip
+apps/web/public/export/*.zip
+*.zip

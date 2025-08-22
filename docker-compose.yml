@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: btp
+      POSTGRES_PASSWORD: btp
+      POSTGRES_DB: btp
+    ports:
+      - "5432:5432"
+    volumes:
+      - btp_data:/var/lib/postgresql/data
+volumes:
+  btp_data:

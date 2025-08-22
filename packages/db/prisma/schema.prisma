@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  trips     Trip[]
+}
+
+model Trip {
+  id          String   @id @default(cuid())
+  userId      String
+  destination String
+  startDate   DateTime
+  endDate     DateTime
+  travelers   Int
+  currency    String
+  budgetTotal Int
+  pace        String
+  interests   String[]
+  dietary     String[]
+  mustSee     String[]
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+  days        Day[]
+  quotes      Quote[]
+}
+
+model Day {
+  id       String   @id @default(cuid())
+  tripId   String
+  date     DateTime
+  subtotal Int
+  trip     Trip     @relation(fields: [tripId], references: [id])
+  items    Item[]
+}
+
+model Item {
+  id          String   @id @default(cuid())
+  dayId       String
+  time        String
+  title       String
+  category    String
+  lat         Float?
+  lng         Float?
+  durationMin Int?
+  estCost     Int
+  notes       String?
+  source      String?
+  operatorId  String?
+  bookingUrl  String?
+  placeId     String?
+  openFrom    String?
+  openTo      String?
+  day         Day      @relation(fields: [dayId], references: [id])
+}
+
+model Quote {
+  id         String   @id @default(cuid())
+  tripId     String
+  type       String
+  supplier   String
+  payload    Json
+  price      Int
+  currency   String
+  deepLink   String?
+  createdAt  DateTime @default(now())
+  trip       Trip     @relation(fields: [tripId], references: [id])
+}

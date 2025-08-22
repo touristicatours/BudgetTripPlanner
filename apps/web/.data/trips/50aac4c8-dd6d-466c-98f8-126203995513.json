@@ -1,0 +1,26 @@
+{
+  "id": "50aac4c8-dd6d-466c-98f8-126203995513",
+  "createdAt": "2025-08-12T16:55:46.548Z",
+  "form": {
+    "destination": "Tokyo",
+    "startDate": "2024-02-01",
+    "endDate": "2024-02-03",
+    "travelers": 2,
+    "budget": 1500,
+    "currency": "USD"
+  },
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Day 1 in Tokyo",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Shibuya Crossing",
+          "note": "Visit early morning",
+          "cost": "0 USD"
+        }
+      ]
+    }
+  ]
+}

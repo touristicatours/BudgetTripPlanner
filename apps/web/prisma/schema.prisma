@@ -1,0 +1,408 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Trip and related models
+model Trip {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  destination String
+  startDate   DateTime?
+  endDate     DateTime?
+  shareToken  String?  @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relationships
+  creatorId   String
+  creator     User     @relation("TripCreator", fields: [creatorId], references: [id])
+  collaborators TripCollaborator[]
+  itineraries Itinerary[]
+  invites     TripInvite[]
+  sessions    CollaborationSession[]
+  messages    CollaborationMessage[]
+  conflicts   CollaborationConflict[]
+  
+  // Legacy relationships
+  receipts       Receipt[]
+  suggestions    Suggestion[]
+  polls          Poll[]
+  invitations    TripInvitation[]
+  feedback       UserFeedback[]
+  
+  @@map("trips")
+}
+
+model Receipt {
+  id         String   @id @default(cuid())
+  tripId     String
+  trip       Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  filename   String
+  mimeType   String
+  bytes      Int
+  storedAt   String
+  detectedAt DateTime @default(now())
+  kind       String?
+  day        Int?
+}
+
+model Suggestion {
+  id        String   @id @default(cuid())
+  tripId    String
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  kind      String
+  payload   String // JSON stored as string
+  createdAt DateTime @default(now())
+  applied   Boolean  @default(false)
+}
+
+model Poll {
+  id          String   @id @default(cuid())
+  tripId      String
+  trip        Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  title       String
+  options     String // JSON stored as string
+  closesAt    DateTime?
+  publicToken String   @unique
+  votes       Vote[]
+}
+
+model Vote {
+  id         String   @id @default(cuid())
+  pollId     String
+  poll       Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  optionId   String
+  voterToken String
+  createdAt  DateTime @default(now())
+}
+
+model TripInvitation {
+  id        String   @id @default(cuid())
+  tripId    String
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  email     String
+  message   String?
+  status    String   @default("PENDING") // PENDING, SENT, ACCEPTED, DECLINED
+  createdAt DateTime @default(now())
+  acceptedAt DateTime?
+}
+
+// Example model - you can modify or add more models as needed
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Subscription and billing
+  subscriptionTier String @default("free") // "free", "pro", "business"
+  subscriptionStatus String @default("active") // "active", "cancelled", "past_due"
+  subscriptionExpiresAt DateTime?
+  stripeCustomerId String? @unique
+  
+  // Relations
+  feedback  UserFeedback[]
+  trips     Trip[]                    @relation("TripCreator")
+  tripCollaborators TripCollaborator[]
+  collaborationSessions CollaborationSession[]
+  collaborationMessages CollaborationMessage[]
+  collaborationConflicts CollaborationConflict[]
+  usageStats UsageStats[]
+  featureAccessLogs FeatureAccessLog[]
+
+  @@map("users")
+}
+
+// User feedback for learning and improving recommendations
+model UserFeedback {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tripId       String
+  trip         Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  activityId   String   // Google Places ID or internal activity ID
+  activityName String   // Activity name for reference
+  action       String   // 'added', 'removed', 'rated', 'liked', 'disliked', 'viewed'
+  rating       Float?   // User rating (1-5) if applicable
+  category     String?  // Activity category (e.g., 'restaurant', 'museum')
+  priceLevel   Int?     // Price level (0-4) if applicable
+  metadata     String?  // JSON string for additional data
+  createdAt    DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([tripId, action])
+  @@index([activityId])
+  @@map("user_feedback")
+}
+
+model TripCollaborator {
+  id        String   @id @default(cuid())
+  tripId    String
+  userId    String
+  role      String   @default("collaborator") // "creator", "collaborator", "viewer"
+  joinedAt  DateTime @default(now())
+  
+  // Relationships
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([tripId, userId])
+  @@map("trip_collaborators")
+}
+
+model TripInvite {
+  id        String   @id @default(cuid())
+  tripId    String
+  email     String
+  token     String   @unique
+  role      String   @default("collaborator")
+  status    String   @default("pending") // "pending", "accepted", "expired"
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  
+  // Relationships
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  
+  @@unique([tripId, email])
+  @@map("trip_invites")
+}
+
+model Itinerary {
+  id          String   @id @default(cuid())
+  tripId      String
+  name        String
+  data        String   // JSON stored as string for SQLite compatibility
+  version     Int      @default(1)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relationships
+  trip        Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  
+  @@map("itineraries")
+}
+
+model CollaborationSession {
+  id        String   @id @default(cuid())
+  tripId    String
+  userId    String
+  sessionId String   @unique
+  isActive  Boolean  @default(true)
+  lastSeen  DateTime @default(now())
+  createdAt DateTime @default(now())
+  
+  // Relationships
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("collaboration_sessions")
+}
+
+model CollaborationMessage {
+  id        String   @id @default(cuid())
+  tripId    String
+  userId    String
+  message   String
+  createdAt DateTime @default(now())
+  
+  // Relationships
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("collaboration_messages")
+}
+
+model CollaborationConflict {
+  id          String   @id @default(cuid())
+  tripId      String
+  itineraryId String
+  userId      String
+  conflictType String  // "activity_edit", "time_slot", "budget_change"
+  description String
+  resolved    Boolean  @default(false)
+  resolvedBy  String?
+  resolvedAt  DateTime?
+  createdAt   DateTime @default(now())
+  
+  // Relationships
+  trip        Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("collaboration_conflicts")
+}
+
+model UsageStats {
+  id        String   @id @default(cuid())
+  userId    String
+  feature   String   // "ai_recommendations", "itineraries", "collaborators", "api_calls"
+  count     Int      @default(0)
+  resetDate DateTime // When the count resets (daily, monthly, etc.)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, feature, resetDate])
+  @@map("usage_stats")
+}
+
+model FeatureAccessLog {
+  id        String   @id @default(cuid())
+  userId    String
+  feature   String   // Feature name that was accessed
+  action    String   // "allowed", "blocked", "upgraded"
+  tier      String   // User's tier at time of access
+  metadata  String?  // Additional data (JSON string)
+  createdAt DateTime @default(now())
+  
+  // Relations
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("feature_access_logs")
+}
+
+model SubscriptionPlan {
+  id          String   @id @default(cuid())
+  name        String   @unique // "free", "pro", "business"
+  displayName String   // "Free", "Pro", "Business"
+  price       Int?     // Price in cents (null for free)
+  currency    String   @default("USD")
+  interval    String?  // "monthly", "yearly" (null for free)
+  features    String   // JSON string of features
+  limits      String   // JSON string of limits
+  stripePriceId String? @unique
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("subscription_plans")
+}
+
+// Collective Intelligence - Anonymous Aggregated Data Tables
+// These tables store anonymized, aggregated data for collaborative filtering
+
+model AnonymousUserProfile {
+  id                String   @id @default(cuid())
+  profileHash       String   @unique // Hash of user characteristics (not reversible)
+  travelStyle       String   // "budget", "luxury", "adventure", "cultural", "relaxation"
+  budgetLevel       String   // "low", "medium", "high"
+  pace              String   // "slow", "moderate", "fast"
+  interests         String   // JSON array of interests
+  ageGroup          String?  // "18-25", "26-35", "36-50", "50+"
+  groupSize         String?  // "solo", "couple", "family", "group"
+  tripDuration      String?  // "weekend", "week", "extended"
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  activityRatings   AnonymousActivityRating[]
+  destinationStats  AnonymousDestinationStat[]
+  
+  @@map("anonymous_user_profiles")
+}
+
+model AnonymousActivityRating {
+  id                String   @id @default(cuid())
+  profileHash       String   // Reference to anonymous profile
+  activityId        String   // Google Places ID or internal ID
+  activityName      String
+  activityCategory  String
+  destination       String
+  averageRating     Float    // Average rating from similar users
+  ratingCount       Int      // Number of ratings contributing to average
+  priceLevel        Int?     // Price level (0-4)
+  popularityScore   Float    // Normalized popularity score (0-1)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  profile           AnonymousUserProfile @relation(fields: [profileHash], references: [profileHash], onDelete: Cascade)
+  
+  @@unique([profileHash, activityId, destination])
+  @@index([activityId, destination])
+  @@index([activityCategory, destination])
+  @@map("anonymous_activity_ratings")
+}
+
+model AnonymousDestinationStat {
+  id                String   @id @default(cuid())
+  profileHash       String   // Reference to anonymous profile
+  destination       String
+  totalTrips        Int      // Number of trips to this destination
+  averageTripDuration Int    // Average trip duration in days
+  favoriteCategories String  // JSON array of most popular categories
+  averageBudget     Float?   // Average daily budget
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  profile           AnonymousUserProfile @relation(fields: [profileHash], references: [profileHash], onDelete: Cascade)
+  
+  @@unique([profileHash, destination])
+  @@index([destination])
+  @@map("anonymous_destination_stats")
+}
+
+model AnonymousActivityCorrelation {
+  id                String   @id @default(cuid())
+  activityId1       String   // First activity
+  activityId2       String   // Second activity
+  destination       String
+  correlationScore  Float    // Correlation coefficient (-1 to 1)
+  coOccurrenceCount Int      // Number of times both activities appear together
+  confidenceLevel   Float    // Statistical confidence (0-1)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@unique([activityId1, activityId2, destination])
+  @@index([activityId1, destination])
+  @@index([activityId2, destination])
+  @@map("anonymous_activity_correlations")
+}
+
+model AnonymousTrendingActivity {
+  id                String   @id @default(cuid())
+  activityId        String
+  activityName      String
+  activityCategory  String
+  destination       String
+  trendScore        Float    // Trending score (0-1)
+  growthRate        Float    // Growth rate over time
+  seasonality       String?  // "spring", "summer", "fall", "winter", null
+  popularityRank    Int      // Rank within destination
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@unique([activityId, destination])
+  @@index([destination, activityCategory])
+  @@index([trendScore])
+  @@map("anonymous_trending_activities")
+}
+
+model AnonymousUserSegment {
+  id                String   @id @default(cuid())
+  segmentName       String   // "Foodies", "Luxury Travelers", "Budget Backpackers"
+  segmentCriteria   String   // JSON criteria for segment membership
+  destination       String
+  topActivities     String   // JSON array of top activities for this segment
+  averageRating     Float    // Average rating given by this segment
+  segmentSize       Int      // Number of users in this segment
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@unique([segmentName, destination])
+  @@index([destination])
+  @@map("anonymous_user_segments")
+}

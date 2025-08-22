@@ -1,0 +1,24 @@
+{
+  "id": "3f5699d5-0641-4c89-a3b2-913517131535",
+  "createdAt": "2025-08-13T12:52:58.689Z",
+  "form": {
+    "destination": "London",
+    "startDate": "2025-09-15",
+    "endDate": "2025-09-18",
+    "travelers": 1,
+    "budget": 800,
+    "budgetCurrency": "GBP"
+  },
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Day 1",
+      "activities": [
+        {
+          "name": "Big Ben",
+          "timeOfDay": "morning"
+        }
+      ]
+    }
+  ]
+}

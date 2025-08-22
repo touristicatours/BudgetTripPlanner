@@ -1,0 +1,40 @@
+{
+  "places": [
+    {
+      "id": "1",
+      "name": "Eiffel Tower",
+      "type": "landmark",
+      "location": {
+        "lat": 48.8584,
+        "lng": 2.2945
+      },
+      "description": "Iconic iron lattice tower on the Champ de Mars in Paris",
+      "rating": 4.6,
+      "price_level": 3
+    },
+    {
+      "id": "2",
+      "name": "Louvre Museum",
+      "type": "museum",
+      "location": {
+        "lat": 48.8606,
+        "lng": 2.3376
+      },
+      "description": "World's largest art museum and a historic monument",
+      "rating": 4.5,
+      "price_level": 2
+    },
+    {
+      "id": "3",
+      "name": "Arc de Triomphe",
+      "type": "landmark",
+      "location": {
+        "lat": 48.8738,
+        "lng": 2.2950
+      },
+      "description": "Famous monument at the western end of the Champs-Élysées",
+      "rating": 4.4,
+      "price_level": 2
+    }
+  ]
+}

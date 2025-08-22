@@ -1,0 +1,66 @@
+{
+  "id": "db3f2d69-7c9c-4d13-a1f5-e2318bd67eb6",
+  "createdAt": "2025-08-13T18:26:08.936Z",
+  "form": {
+    "destination": "Rome",
+    "startDate": "2025-09-01",
+    "endDate": "2025-09-05",
+    "travelers": 2,
+    "currency": "EUR",
+    "budget": 1200,
+    "pace": "balanced",
+    "interests": [
+      "culture",
+      "history"
+    ],
+    "mustSee": [],
+    "tone": "Concise",
+    "detail": "Concise",
+    "activitiesPerDay": 3,
+    "includeFlights": false
+  },
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Historic Center",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Colosseum",
+          "note": "Buy skip-the-line tickets"
+        },
+        {
+          "timeOfDay": "afternoon",
+          "name": "Roman Forum",
+          "note": "Ancient ruins"
+        },
+        {
+          "timeOfDay": "evening",
+          "name": "Trevi Fountain",
+          "note": "Make a wish!"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Vatican City",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Vatican Museums",
+          "note": "Book in advance"
+        },
+        {
+          "timeOfDay": "afternoon",
+          "name": "St. Peter's Basilica",
+          "note": "Dress modestly"
+        },
+        {
+          "timeOfDay": "evening",
+          "name": "Piazza Navona",
+          "note": "Beautiful square"
+        }
+      ]
+    }
+  ]
+}

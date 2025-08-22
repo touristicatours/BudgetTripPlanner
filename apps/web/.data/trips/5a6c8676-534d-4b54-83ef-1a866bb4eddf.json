@@ -1,0 +1,26 @@
+{
+  "id": "5a6c8676-534d-4b54-83ef-1a866bb4eddf",
+  "createdAt": "2025-08-12T16:47:48.813Z",
+  "form": {
+    "destination": "Paris",
+    "startDate": "2024-01-01",
+    "endDate": "2024-01-03",
+    "travelers": 2,
+    "budget": 1200,
+    "currency": "EUR"
+  },
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Day 1 in Paris",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Eiffel Tower",
+          "note": "Book tickets in advance",
+          "cost": "25 EUR"
+        }
+      ]
+    }
+  ]
+}

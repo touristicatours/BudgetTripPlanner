@@ -1,0 +1,75 @@
+{
+  "summary": {
+    "total_tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "errors": 0,
+    "success_rate": 1.0,
+    "total_duration": 18.2,
+    "avg_duration": 3.6399999999999997,
+    "demo_mode": true
+  },
+  "results": [
+    {
+      "test_name": "Geographic Diversity Test (Demo)",
+      "status": "PASS",
+      "duration": 2.5,
+      "details": "Tokyo: 75.0% appropriate activities\nSantorini: 82.0% appropriate activities\nBanff: 68.0% appropriate activities\nPrague: 79.0% appropriate activities\nOrlando: 71.0% appropriate activities",
+      "errors": [],
+      "metrics": {
+        "scenarios_tested": 5
+      }
+    },
+    {
+      "test_name": "Preference Extremes Test (Demo)",
+      "status": "PASS",
+      "duration": 3.2,
+      "details": "Ultra Budget Traveler: 85.0% preference adherence\nLuxury Traveler: 78.0% preference adherence\nAdventure Sports Enthusiast: 72.0% preference adherence\nFamily with Young Children: 81.0% preference adherence",
+      "errors": [],
+      "metrics": {
+        "profiles_tested": 4
+      }
+    },
+    {
+      "test_name": "API Failure Resilience Test (Demo)",
+      "status": "PASS",
+      "duration": 1.8,
+      "details": "Invalid API key: \u2705 Handled gracefully\nNetwork timeout: \u2705 Handled gracefully\nRate limiting: \u2705 Handled gracefully\nInvalid location: \u2705 Handled gracefully\nMalformed request: \u2705 Handled gracefully",
+      "errors": [],
+      "metrics": {
+        "resilience_tests": 5
+      }
+    },
+    {
+      "test_name": "Performance Benchmark Test (Demo)",
+      "status": "PASS",
+      "duration": 4.5,
+      "details": "Simple Itinerary: 1.20s\nComplex Itinerary: 2.10s\nML-Enhanced Itinerary: 2.80s\n\nPerformance Summary:\nAverage: 2.03s\nMaximum: 2.80s\nMinimum: 1.20s",
+      "errors": [],
+      "metrics": {
+        "avg_duration": 2.033333333333333,
+        "max_duration": 2.8,
+        "min_duration": 1.2,
+        "scenarios_tested": 3
+      }
+    },
+    {
+      "test_name": "Concurrent Load Test (Demo)",
+      "status": "PASS",
+      "duration": 6.2,
+      "details": "Concurrent requests: 9/10 successful",
+      "errors": [],
+      "metrics": {
+        "concurrent_requests": 10,
+        "successful_requests": 9,
+        "success_rate": 0.9
+      }
+    }
+  ],
+  "timestamp": "2025-08-22T16:57:22.395191",
+  "recommendations": [
+    "This is a demo run with sample data",
+    "Run the full stress test suite for real validation",
+    "System appears to be performing well in demo mode"
+  ]
+}

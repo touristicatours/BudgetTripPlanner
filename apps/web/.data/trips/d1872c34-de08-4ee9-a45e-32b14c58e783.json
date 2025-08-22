@@ -1,0 +1,13 @@
+{
+  "id": "d1872c34-de08-4ee9-a45e-32b14c58e783",
+  "createdAt": "2025-08-15T10:41:13.079Z",
+  "form": {
+    "destination": "Test",
+    "startDate": "2024-01-01",
+    "endDate": "2024-01-07",
+    "travelers": 2,
+    "budgetCents": 100000,
+    "budgetCurrency": "USD"
+  },
+  "itinerary": []
+}

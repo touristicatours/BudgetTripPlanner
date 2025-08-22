@@ -1,0 +1,111 @@
+[
+  {
+    "city": "Paris",
+    "country": "France",
+    "sights": [
+      {
+        "title": "Louvre Museum",
+        "lat": 48.8606,
+        "lng": 2.3376,
+        "tags": ["art", "must-see", "museum"],
+        "estCost": 22,
+        "open": "09:00",
+        "close": "18:00",
+        "closed": ["Tuesday"]
+      },
+      {
+        "title": "Eiffel Tower",
+        "lat": 48.8584,
+        "lng": 2.2945,
+        "tags": ["view", "landmark", "must-see"],
+        "estCost": 28,
+        "open": "09:00",
+        "close": "23:45"
+      },
+      {
+        "title": "Montmartre & Sacré-Cœur",
+        "lat": 48.8867,
+        "lng": 2.3431,
+        "tags": ["neighborhood", "free", "view"],
+        "estCost": 0,
+        "open": "06:00",
+        "close": "22:30"
+      },
+      {
+        "title": "Notre-Dame Cathedral",
+        "lat": 48.8530,
+        "lng": 2.3499,
+        "tags": ["architecture", "church", "free"],
+        "estCost": 0,
+        "open": "08:00",
+        "close": "18:45"
+      },
+      {
+        "title": "Arc de Triomphe",
+        "lat": 48.8738,
+        "lng": 2.2950,
+        "tags": ["landmark", "view"],
+        "estCost": 13,
+        "open": "10:00",
+        "close": "23:00"
+      },
+      {
+        "title": "Champs-Élysées",
+        "lat": 48.8698,
+        "lng": 2.3077,
+        "tags": ["shopping", "free", "avenue"],
+        "estCost": 0
+      },
+      {
+        "title": "Musée d'Orsay",
+        "lat": 48.8600,
+        "lng": 2.3266,
+        "tags": ["art", "museum"],
+        "estCost": 16,
+        "open": "09:30",
+        "close": "18:00",
+        "closed": ["Monday"]
+      },
+      {
+        "title": "Palace of Versailles",
+        "lat": 48.8044,
+        "lng": 2.1232,
+        "tags": ["palace", "history", "day-trip"],
+        "estCost": 20,
+        "open": "09:00",
+        "close": "17:30",
+        "closed": ["Monday"]
+      },
+      {
+        "title": "Sainte-Chapelle",
+        "lat": 48.8559,
+        "lng": 2.3450,
+        "tags": ["architecture", "church", "stained-glass"],
+        "estCost": 11,
+        "open": "09:00",
+        "close": "17:00"
+      },
+      {
+        "title": "Luxembourg Gardens",
+        "lat": 48.8462,
+        "lng": 2.3376,
+        "tags": ["park", "free", "relaxation"],
+        "estCost": 0,
+        "open": "07:00",
+        "close": "21:00"
+      }
+    ],
+    "signatureFoods": [
+      "boulangerie croissant",
+      "bistro steak-frites",
+      "Berthillon ice cream",
+      "macarons",
+      "escargots",
+      "coq au vin",
+      "ratatouille",
+      "crêpes",
+      "French onion soup",
+      "tarte tatin"
+    ]
+  }
+]

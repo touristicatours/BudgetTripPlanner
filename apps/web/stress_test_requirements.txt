@@ -1,0 +1,14 @@
+# Stress Test Dependencies
+requests>=2.31.0
+asyncio
+aiohttp>=3.8.0
+dataclasses
+typing
+datetime
+json
+time
+random
+sqlite3
+logging
+concurrent.futures
+threading

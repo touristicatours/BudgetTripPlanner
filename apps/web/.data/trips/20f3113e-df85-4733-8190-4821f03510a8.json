@@ -1,0 +1,99 @@
+{
+  "id": "20f3113e-df85-4733-8190-4821f03510a8",
+  "createdAt": "2025-08-12T16:56:34.166Z",
+  "form": {
+    "destination": "Paris",
+    "startDate": "2025-08-12",
+    "endDate": "2025-08-15",
+    "travelers": 2,
+    "currency": "EUR",
+    "budget": 1200,
+    "pace": "relaxed",
+    "interests": [
+      "culture",
+      "food"
+    ],
+    "mustSee": [],
+    "tone": "Helpful",
+    "detail": "Concise",
+    "activitiesPerDay": 2
+  },
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Day 1 in Paris",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Morning walking tour in Paris",
+          "note": "Buy skip-the-line tickets if possible",
+          "category": "food",
+          "cost": "23 EUR"
+        },
+        {
+          "timeOfDay": "morning",
+          "name": "Local market visit in Paris",
+          "category": "food",
+          "cost": "38 EUR"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Day 2 in Paris",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Morning walking tour in Paris",
+          "note": "Buy skip-the-line tickets if possible",
+          "category": "food",
+          "cost": "22 EUR"
+        },
+        {
+          "timeOfDay": "morning",
+          "name": "Local market visit in Paris",
+          "category": "food",
+          "cost": "13 EUR"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Day 3 in Paris",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Morning walking tour in Paris",
+          "note": "Buy skip-the-line tickets if possible",
+          "category": "food",
+          "cost": "54 EUR"
+        },
+        {
+          "timeOfDay": "morning",
+          "name": "Local market visit in Paris",
+          "category": "culture",
+          "cost": "26 EUR"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Day 4 in Paris",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Morning walking tour in Paris",
+          "note": "Buy skip-the-line tickets if possible",
+          "category": "culture",
+          "cost": "52 EUR"
+        },
+        {
+          "timeOfDay": "morning",
+          "name": "Local market visit in Paris",
+          "category": "food",
+          "cost": "12 EUR"
+        }
+      ]
+    }
+  ]
+}

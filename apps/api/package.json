@@ -1,0 +1,32 @@
+{
+  "name": "@tripweaver/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist",
+    "setup-ml": "./setup-ml.sh",
+    "test-ml": "npm run build && node test-ml-recommendations.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.0.0",
+    "@fastify/helmet": "^11.0.0",
+    "@fastify/rate-limit": "^8.0.0",
+    "@types/socket.io": "^3.0.1",
+    "fastify": "^4.0.0",
+    "lru-cache": "^10.2.0",
+    "node-fetch": "^3.3.2",
+    "openai": "^4.0.0",
+    "redis": "^4.0.0",
+    "socket.io": "^4.8.1",
+    "winston": "^3.17.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^3.12.0",
+    "typescript": "^5.0.0"
+  }
+}

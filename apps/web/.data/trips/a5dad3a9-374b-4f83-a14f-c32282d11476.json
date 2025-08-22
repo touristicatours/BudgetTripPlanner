@@ -1,0 +1,100 @@
+{
+  "id": "a5dad3a9-374b-4f83-a14f-c32282d11476",
+  "createdAt": "2025-08-13T12:41:27.188Z",
+  "form": {
+    "destination": "Paris",
+    "startDate": "2025-08-13",
+    "endDate": "2025-08-16",
+    "travelers": 2,
+    "currency": "EUR",
+    "budget": 1200,
+    "pace": "balanced",
+    "interests": [
+      "culture",
+      "food"
+    ],
+    "mustSee": [],
+    "tone": "Concise",
+    "detail": "Concise",
+    "activitiesPerDay": 3,
+    "includeFlights": false
+  },
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Day 1 • Paris",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Morning walking tour",
+          "note": "Buy skip-the-line if possible."
+        },
+        {
+          "timeOfDay": "afternoon",
+          "name": "Local market tasting"
+        },
+        {
+          "timeOfDay": "evening",
+          "name": "Iconic landmark visit"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "title": "Day 2 • Paris",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Museum or gallery",
+          "note": "Buy skip-the-line if possible."
+        },
+        {
+          "timeOfDay": "afternoon",
+          "name": "Scenic viewpoint"
+        },
+        {
+          "timeOfDay": "evening",
+          "name": "Neighborhood stroll"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "title": "Day 3 • Paris",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Riverfront / seaside time",
+          "note": "Buy skip-the-line if possible."
+        },
+        {
+          "timeOfDay": "afternoon",
+          "name": "Dinner at a cozy spot"
+        },
+        {
+          "timeOfDay": "evening",
+          "name": "Street-food crawl"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "title": "Day 4 • Paris",
+      "activities": [
+        {
+          "timeOfDay": "morning",
+          "name": "Morning walking tour",
+          "note": "Buy skip-the-line if possible."
+        },
+        {
+          "timeOfDay": "afternoon",
+          "name": "Local market tasting"
+        },
+        {
+          "timeOfDay": "evening",
+          "name": "Iconic landmark visit"
+        }
+      ]
+    }
+  ]
+}

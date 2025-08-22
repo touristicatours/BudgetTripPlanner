@@ -1,0 +1,24 @@
+{
+  "id": "98369249-6eb4-401a-a732-a13382c04bae",
+  "createdAt": "2025-08-13T12:51:39.713Z",
+  "form": {
+    "destination": "Paris",
+    "startDate": "2025-09-10",
+    "endDate": "2025-09-13",
+    "travelers": 2,
+    "budget": 1000,
+    "budgetCurrency": "EUR"
+  },
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Day 1",
+      "activities": [
+        {
+          "name": "Eiffel Tower",
+          "timeOfDay": "morning"
+        }
+      ]
+    }
+  ]
+}
